@@ -26,6 +26,7 @@ object Simulation {
                 it(value)
             }
         }
+    var playSpeed = 1.0
 
     fun start(initialState: State) {
         queue.clear()
@@ -52,7 +53,7 @@ object Simulation {
                 Thread.sleep(1000 / 48)  // 30 FPS
 
                 val currentTimeMillis = System.currentTimeMillis()
-                listener?.invoke(update((currentTimeMillis - lastTimeMillis) / 1000.0))
+                listener?.invoke(update((currentTimeMillis - lastTimeMillis) * playSpeed / 1000.0))
                 lastTimeMillis = currentTimeMillis
             }
         }

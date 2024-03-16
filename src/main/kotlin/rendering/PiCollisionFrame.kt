@@ -31,9 +31,7 @@ class PiCollisionFrame : Frame("Pi Collision") {
         val controlPanel = JPanel(BorderLayout()).apply {
             val buttonPanel = JPanel(FlowLayout()).apply {
                 add(PlayButton())
-
-                val speedButton = JButton("x 1")
-                add(speedButton)
+                add(SpeedButton())
             }
             add(buttonPanel, BorderLayout.EAST)
 
