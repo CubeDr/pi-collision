@@ -16,9 +16,16 @@ object Simulation {
     private val queue = LinkedBlockingQueue<State>()
     private var time = 0.0
     private var totalCollisions = 0L
-    private var lastState: State? = null
     private var listener: SimulationResultListener? = null
     private var runningStateListeners = mutableListOf<SimulationRunningStateListener>()
+    var state: State? = null
+        set(value) {
+            field = value
+            if (value != null) {
+                listener?.invoke(SimulationResult(state!!, 0))
+            }
+        }
+
     var isRunning = false
         private set(value) {
             field = value
@@ -28,14 +35,16 @@ object Simulation {
         }
     var playSpeed = 1.0
 
-    fun start(initialState: State) {
+    fun start() {
         queue.clear()
         time = 0.0
         totalCollisions = 0L
-        lastState = initialState
         isRunning = true
 
-        var state = Optional.of(initialState)
+        if (state == null) {
+            throw Exception("State not set.")
+        }
+        var state = Optional.of(state!!)
         thread {
             while (isRunning) {
                 state = getNextCollisionState(state.get())
@@ -64,7 +73,7 @@ object Simulation {
     }
 
     private fun update(dt: Double): SimulationResult {
-        if (lastState == null) {
+        if (state == null) {
             throw RuntimeException("Call start(initialState) first")
         }
 
@@ -80,10 +89,10 @@ object Simulation {
         }
 
         val state = when (lastCollisionState) {
-            null -> moveState(lastState!!)
+            null -> moveState(state!!)
             else -> moveState(lastCollisionState)
         }
-        lastState = state
+        this.state = state
         return SimulationResult(
             state = state,
             totalCollisions = totalCollisions,
@@ -92,6 +101,9 @@ object Simulation {
 
     fun onStateUpdate(listener: SimulationResultListener) {
         this.listener = listener
+        if (state != null) {
+            listener.invoke(SimulationResult(state!!, 0))
+        }
     }
 
     fun onRunningStateUpdate(listener: SimulationRunningStateListener) {
