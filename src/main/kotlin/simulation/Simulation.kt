@@ -19,6 +19,12 @@ object Simulation {
     private var listener: SimulationResultListener? = null
     private var runningStateListeners = mutableListOf<SimulationRunningStateListener>()
     var initialState: State? = null
+        set(value) {
+            field = value
+            if (value != null) {
+                listener?.invoke(SimulationResult(initialState!!, 0))
+            }
+        }
     private var state: State? = null
         set(value) {
             field = value

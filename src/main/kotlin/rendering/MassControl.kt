@@ -7,6 +7,7 @@ import javax.swing.BoxLayout
 import javax.swing.JLabel
 import javax.swing.JPanel
 import javax.swing.JSlider
+import kotlin.math.log
 import kotlin.math.pow
 
 class MassControl : JPanel() {
@@ -28,6 +29,8 @@ class MassControl : JPanel() {
 
     private fun onMassChanged(mass: Long) {
         label.text = "Mass: $mass"
+
+        val size = log(mass.toDouble(), 100.0).toInt() + 1
         Simulation.initialState =
             State(
                 time = 0.0,
@@ -36,8 +39,8 @@ class MassControl : JPanel() {
                     position = 10.0,
                     velocity = -2.0,
                     mass = mass,
-                    width = 1,
-                    height = 1
+                    width = size,
+                    height = size
                 ),
             )
     }
