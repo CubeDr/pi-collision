@@ -3,7 +3,7 @@ package simulation
 import java.util.*
 import kotlin.math.abs
 
-fun getNextCollisionStates(state: State): Optional<State> {
+fun getNextCollisionState(state: State): Optional<State> {
     val wallCollisionDt = getWallCollisionDt(state.box1)
     val boxCollisionDt = getBoxCollisionDt(state.box1, state.box2)
 
