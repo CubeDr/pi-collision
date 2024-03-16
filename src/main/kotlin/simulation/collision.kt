@@ -19,7 +19,7 @@ fun getNextCollisionState(state: State): Optional<State> {
 private fun getWallCollisionDt(box1: BoxState): Double {
     if (box1.velocity >= 0) return Double.MAX_VALUE
 
-    val distance = box1.position - box1.width / 2
+    val distance = box1.position - box1.width / 2.0
     val velocity = abs(box1.velocity)
     return distance / velocity
 }

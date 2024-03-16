@@ -11,13 +11,13 @@ data class SimulationResult(
 
 object Simulation {
     private val queue = LinkedBlockingQueue<State>()
-    private var time = 0L
+    private var time = 0.0
     private var totalCollisions = 0L
     private var lastState: State? = null
 
     fun start(initialState: State) {
         queue.clear()
-        time = 0L
+        time = 0.0
         totalCollisions = 0L
         lastState = initialState
 
@@ -34,7 +34,7 @@ object Simulation {
         }
     }
 
-    fun update(dt: Long): SimulationResult {
+    fun update(dt: Double): SimulationResult {
         if (lastState == null) {
             throw RuntimeException("Call start(initialState) first")
         }
@@ -64,7 +64,7 @@ object Simulation {
     private fun moveState(state: State): State {
         val stateDt = time - state.time
         return state.copy(
-            time = time.toDouble(),
+            time = time,
             box1 = state.box1.move(stateDt),
             box2 = state.box2.move(stateDt),
         )
