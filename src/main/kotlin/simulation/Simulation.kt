@@ -18,7 +18,8 @@ object Simulation {
     private var totalCollisions = 0L
     private var listener: SimulationResultListener? = null
     private var runningStateListeners = mutableListOf<SimulationRunningStateListener>()
-    var state: State? = null
+    var initialState: State? = null
+    private var state: State? = null
         set(value) {
             field = value
             if (value != null) {
@@ -41,10 +42,11 @@ object Simulation {
         totalCollisions = 0L
         isRunning = true
 
-        if (state == null) {
+        if (initialState == null) {
             throw Exception("State not set.")
         }
-        var state = Optional.of(state!!)
+        state = initialState
+        var state = Optional.of(initialState!!)
         thread {
             while (isRunning) {
                 state = getNextCollisionState(state.get())

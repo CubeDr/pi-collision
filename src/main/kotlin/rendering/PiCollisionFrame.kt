@@ -5,7 +5,7 @@ import java.awt.FlowLayout
 import java.awt.Frame
 import java.awt.event.WindowAdapter
 import java.awt.event.WindowEvent
-import javax.swing.*
+import javax.swing.JPanel
 import kotlin.system.exitProcess
 
 class PiCollisionFrame : Frame("Pi Collision") {
@@ -28,23 +28,13 @@ class PiCollisionFrame : Frame("Pi Collision") {
         val canvas = PiCollisionCanvas()
         add(canvas, BorderLayout.CENTER)
 
-        val controlPanel = JPanel(BorderLayout()).apply {
+        val controlPanel = JPanel(BorderLayout(80, 0)).apply {
             val buttonPanel = JPanel(FlowLayout()).apply {
                 add(PlayButton())
                 add(SpeedButton())
             }
             add(buttonPanel, BorderLayout.EAST)
-
-            val massPanel = JPanel().apply {
-                layout = BoxLayout(this, BoxLayout.Y_AXIS)
-
-                val label = JLabel("Mass: 100")
-                add(label)
-
-                val slider = JSlider(JSlider.HORIZONTAL, 1, 12, 1)
-                add(slider)
-            }
-            add(massPanel, BorderLayout.WEST)
+            add(MassControl(), BorderLayout.CENTER)
         }
         add(controlPanel, BorderLayout.SOUTH)
     }
