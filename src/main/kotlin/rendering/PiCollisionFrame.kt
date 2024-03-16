@@ -30,8 +30,7 @@ class PiCollisionFrame : Frame("Pi Collision") {
 
         val controlPanel = JPanel(BorderLayout()).apply {
             val buttonPanel = JPanel(FlowLayout()).apply {
-                val playButton = JButton("Play")
-                add(playButton)
+                add(PlayButton())
 
                 val speedButton = JButton("x 1")
                 add(speedButton)
@@ -44,7 +43,7 @@ class PiCollisionFrame : Frame("Pi Collision") {
                 val label = JLabel("Mass: 100")
                 add(label)
 
-                val slider = JSlider(JSlider.HORIZONTAL, 1, 1000000000, 1)
+                val slider = JSlider(JSlider.HORIZONTAL, 1, 12, 1)
                 add(slider)
             }
             add(massPanel, BorderLayout.WEST)
