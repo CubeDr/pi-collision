@@ -30,11 +30,11 @@ class MassControl : JPanel() {
     private fun onMassChanged(mass: Long) {
         label.text = "Mass: $mass"
 
-        val size = log(mass.toDouble(), 100.0).toInt() + 1
+        val size = log(mass.toDouble(), 100.0) + 1
         Simulation.initialState =
             State(
                 time = 0.0,
-                box1 = BoxState(position = 5.0, velocity = 0.0, mass = 1, width = 1, height = 1),
+                box1 = BoxState(position = 5.0, velocity = 0.0, mass = 1, width = 1.0, height = 1.0),
                 box2 = BoxState(
                     position = 10.0,
                     velocity = -2.0,

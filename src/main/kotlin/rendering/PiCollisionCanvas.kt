@@ -6,6 +6,7 @@ import simulation.SimulationResult
 import java.awt.*
 import java.awt.event.ComponentAdapter
 import java.awt.event.ComponentEvent
+import kotlin.math.roundToInt
 
 class PiCollisionCanvas : Canvas() {
     private val scale = 30
@@ -57,10 +58,10 @@ class PiCollisionCanvas : Canvas() {
 
     private fun BoxState.draw(g: Graphics2D) {
         g.fillRect(
-            ((position - width / 2.0) * scale).toInt(),
-            this@PiCollisionCanvas.height - height * scale,
-            width * scale,
-            height * scale
+            ((position - width / 2) * scale).roundToInt(),
+            (this@PiCollisionCanvas.height - height * scale).roundToInt(),
+            (width * scale).roundToInt(),
+            (height * scale).roundToInt()
         )
     }
 }
