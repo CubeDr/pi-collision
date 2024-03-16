@@ -3,6 +3,8 @@ import simulation.Simulation
 import simulation.SimulationResult
 import simulation.State
 import java.awt.*
+import java.awt.event.ComponentAdapter
+import java.awt.event.ComponentEvent
 import kotlin.concurrent.thread
 
 class PiCollisionCanvas : Canvas() {
@@ -19,6 +21,13 @@ class PiCollisionCanvas : Canvas() {
 
     init {
         run()
+
+        addComponentListener(object: ComponentAdapter() {
+            override fun componentResized(e: ComponentEvent?) {
+                val size = e?.component?.size ?: return
+                buffer = createImage(size.width, size.height)
+            }
+        })
     }
 
     override fun paint(g: Graphics?) {
