@@ -10,7 +10,6 @@ class PlayButton : JButton("Play") {
         addActionListener {
             if (Simulation.isRunning) {
                 Simulation.stop()
-                text = "Play"
             } else {
                 Simulation.start(
                     State(
@@ -25,7 +24,13 @@ class PlayButton : JButton("Play") {
                         ),
                     )
                 )
-                text = "Stop"
+            }
+        }
+
+        Simulation.onRunningStateUpdate { isRunning ->
+            text = when (isRunning) {
+                true -> "Stop"
+                false -> "Play"
             }
         }
     }

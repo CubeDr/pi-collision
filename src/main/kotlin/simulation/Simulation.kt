@@ -10,6 +10,7 @@ data class SimulationResult(
 )
 
 typealias SimulationResultListener = (SimulationResult) -> Unit
+typealias SimulationRunningStateListener = (isRunning: Boolean) -> Unit
 
 object Simulation {
     private val queue = LinkedBlockingQueue<State>()
@@ -17,8 +18,14 @@ object Simulation {
     private var totalCollisions = 0L
     private var lastState: State? = null
     private var listener: SimulationResultListener? = null
+    private var runningStateListeners = mutableListOf<SimulationRunningStateListener>()
     var isRunning = false
-        private set
+        private set(value) {
+            field = value
+            runningStateListeners.forEach {
+                it(value)
+            }
+        }
 
     fun start(initialState: State) {
         queue.clear()
@@ -82,8 +89,12 @@ object Simulation {
         )
     }
 
-    fun listen(listener: SimulationResultListener) {
+    fun onStateUpdate(listener: SimulationResultListener) {
         this.listener = listener
+    }
+
+    fun onRunningStateUpdate(listener: SimulationRunningStateListener) {
+        runningStateListeners.add(listener)
     }
 
     private fun moveState(state: State): State {

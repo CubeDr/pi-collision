@@ -13,7 +13,7 @@ class PiCollisionCanvas : Canvas() {
     private var buffer: Image? = null
 
     init {
-        Simulation.listen {
+        Simulation.onStateUpdate {
             simulationResult = it
             repaint()
         }
