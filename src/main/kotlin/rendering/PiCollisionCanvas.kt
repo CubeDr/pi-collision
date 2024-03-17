@@ -45,7 +45,7 @@ class PiCollisionCanvas : Canvas() {
                 it.state.box2.draw(graphics)
 
                 graphics.color = Color.WHITE
-                graphics.drawString("Collisions: ${it.totalCollisions}", 20, 30)
+                graphics.drawString("Collisions: ${it.totalCollisions}", width - 140, 30)
             }
         }
 
