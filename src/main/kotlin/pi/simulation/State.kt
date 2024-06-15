@@ -1,4 +1,4 @@
-package simulation
+package pi.simulation
 
 data class State(
     val time: Double,

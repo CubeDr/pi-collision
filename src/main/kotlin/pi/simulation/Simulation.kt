@@ -1,4 +1,4 @@
-package simulation
+package pi.simulation
 
 import java.util.*
 import java.util.concurrent.LinkedBlockingQueue
@@ -100,7 +100,7 @@ object Simulation {
             null -> moveState(state!!)
             else -> moveState(lastCollisionState)
         }
-        this.state = state
+        Simulation.state = state
         return SimulationResult(
             state = state,
             totalCollisions = totalCollisions,
@@ -108,7 +108,7 @@ object Simulation {
     }
 
     fun onStateUpdate(listener: SimulationResultListener) {
-        this.listener = listener
+        Simulation.listener = listener
         if (state != null) {
             listener.invoke(SimulationResult(state!!, 0))
         }

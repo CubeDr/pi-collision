@@ -1,5 +1,6 @@
-package rendering
+package pi.rendering
 
+import pi.simulation.MassControl
 import java.awt.BorderLayout
 import java.awt.FlowLayout
 import java.awt.Frame
@@ -10,7 +11,7 @@ import kotlin.system.exitProcess
 
 class PiCollisionFrame : Frame("Pi Collision") {
     init {
-        setSize(500, 400)
+        setSize(400, 300)
 
         addWindowListener(object : WindowAdapter() {
             override fun windowClosing(e: WindowEvent?) {

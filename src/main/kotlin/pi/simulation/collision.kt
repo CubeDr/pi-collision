@@ -1,4 +1,4 @@
-package simulation
+package pi.simulation
 
 import java.util.*
 import kotlin.math.abs

@@ -1,4 +1,6 @@
-import rendering.PiCollisionFrame
+package pi
+
+import pi.rendering.PiCollisionFrame
 
 fun main() {
     val frame = PiCollisionFrame()

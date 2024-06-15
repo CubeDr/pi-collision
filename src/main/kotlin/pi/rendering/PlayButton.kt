@@ -1,6 +1,6 @@
-package rendering
+package pi.rendering
 
-import simulation.Simulation
+import pi.simulation.Simulation
 import javax.swing.JButton
 
 class PlayButton : JButton("Play") {

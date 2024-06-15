@@ -1,8 +1,8 @@
-package rendering
+package pi.rendering
 
-import simulation.BoxState
-import simulation.Simulation
-import simulation.SimulationResult
+import pi.simulation.Simulation
+import pi.simulation.SimulationResult
+import pi.simulation.BoxState
 import java.awt.*
 import java.awt.event.ComponentAdapter
 import java.awt.event.ComponentEvent

@@ -1,8 +1,5 @@
-package rendering
+package pi.simulation
 
-import simulation.BoxState
-import simulation.Simulation
-import simulation.State
 import javax.swing.BoxLayout
 import javax.swing.JLabel
 import javax.swing.JPanel
